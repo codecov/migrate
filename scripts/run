@@ -5,9 +5,9 @@ set -x
 if [ -d /archive/ ];
 then
 
-  ./scripts/move_archive_assets.sh
+  exec ./scripts/move_archive_assets.sh
 
-  python -m scripts.migrate
+  exec python -m scripts.migrate
 
 else
   echo 'No /archive attached'
