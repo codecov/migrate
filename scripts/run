@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -x
+
+if [ -d /archive/ ];
+then
+
+  ./scripts/move_archive_assets.sh
+
+  python -m scripts.migrate
+
+  ./scripts/upgrade_database.sh
+
+else
+  echo 'No /archive attached'
+  exit 1
+fi
