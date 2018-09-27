@@ -11,5 +11,6 @@ def test_wont_run_without_archive():
                        message='No /archive attached'):
         docker.containers.run(
             image='codecov/migrate',
+            auto_remove=True,
             command='scripts/run'
         )

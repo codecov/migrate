@@ -19,6 +19,7 @@ def test_assets_move(tmpdir):
     res = docker.containers.run(
         image='codecov/migrate',
         command='scripts/move_archive_assets.sh',
+        auto_remove=True,
         volumes={
             str(tmpdir): {'bind': '/archive', 'mode': 'rw'}
         }
@@ -39,6 +40,7 @@ def test_stuff_moved_already(tmpdir):
     res = docker.containers.run(
         image='codecov/migrate',
         command='scripts/move_archive_assets.sh',
+        auto_remove=True,
         volumes={
             str(tmpdir): {'bind': '/archive', 'mode': 'rw'}
         }

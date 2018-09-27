@@ -9,8 +9,6 @@ then
 
   python -m scripts.migrate
 
-  ./scripts/upgrade_database.sh
-
 else
   echo 'No /archive attached'
   exit 1
