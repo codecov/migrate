@@ -20,9 +20,13 @@ then
 
   date > /archive/.migrate.44.pg_restore_started
 
+  # restore data
   pg_restore ${DATABASE_URL:-$DB} \
     --disable-triggers \
     /archive/pg_dump.gz.txt
+
+  # update release #
+  psql ${DATABASE_URL:-$DB} -c "update version set version='v4.4.0';"
 
   date > /archive/.migrate.44.pg_restore_complete
 
