@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+  migrate:
+    image: codecov/migrate
+    ports:
+      - 5001:5000
+    environment:
+      DATABASE_URL: ${DATABASE_OLD_URL}
+    volumes:
+      - archive-volume:/archive
+
+  postgres9:
+    image: codecov/migrate-pg9
+    ports:
+      - 5009:5000
+    environment:
+      DATABASE_URL: ${DATABASE_OLD_URL}
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+      - archive-volume:/archive
+
+  postgres10:
+    image: codecov/migrate-pg10
+    ports:
+      - 5010:5000
+    environment:
+      DATABASE_URL: ${DATABASE_NEW_URL}
+    volumes:
+      - postgres10-volume:/var/lib/postgresql/data
+      - archive-volume:/archive
+
+  postgres_db9:
+    image: postgres:9.6-alpine
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+
+  postgres_db10:
+    image: postgres:10.5-alpine
+    volumes:
+      - postgres10-volume:/var/lib/postgresql/data
+
+volumes:
+  archive-volume:
+  postgres-volume:
+  postgres10-volume:

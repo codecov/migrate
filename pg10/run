@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -e
+
+DB='postgres://postgres@postgres_db10:5432'
+
+if [ -f /archive/.migrate.44.pg_restore_started ];
+then
+  echo 'Restore happening on another node.'
+
+elif [ -f /archive/.migrate.44.pg_restore_complete ];
+then
+  echo 'Restore complete.'
+
+elif [ -f /archive/pg_dump.gz.txt ];
+then
+
+  echo '===> Preparing new database for migration'
+  psql ${DATABASE_URL:-$DB} -f /database/main.sql
+
+  date > /archive/.migrate.44.pg_restore_started
+
+  pg_restore ${DATABASE_URL:-$DB} \
+    --disable-triggers \
+    /archive/pg_dump.gz.txt
+
+  date > /archive/.migrate.44.pg_restore_complete
+
+  rm /archive/pg_dump.gz.txt
+
+else
+  echo 'No pg_dump file found to restore.'
+fi

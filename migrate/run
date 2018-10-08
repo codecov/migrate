@@ -1,0 +1,63 @@
+#!/bin/bash
+
+set -e
+
+
+function is_all_complete(){
+  if [ -f /archive/.migrate.44.migrate_working ] && [ -f /archive/.migrate.44.migrate_working ];
+  then
+    working=$(wc -l /archive/.migrate.44.migrate_working | xargs | cut -d' ' -f1)
+    complete=$(wc -l /archive/.migrate.44.migrate_complete | xargs | cut -d' ' -f1)
+    if [ working = complete ];
+    then
+      echo 1
+    else
+      echo 0
+    fi
+  else
+    echo 0
+  fi
+}
+
+function add_me(){
+  touch $1
+
+  if grep "$HOSTNAME:" $1;
+  then
+    # do nothing, already working
+    echo 0
+  else
+    echo "$HOSTNAME: $(date)" > $1
+  fi
+}
+
+
+if [ is_all_complete = 1 ];
+then
+  echo 'Complete'
+
+elif [ -d /archive/ ];
+then
+
+  add_me /archive/.migrate.44.migrate_working
+
+  if [ ! -f /archive/.migrate.44.archive_started ];
+  then
+    if [ -d /archive/v4 ];
+    then
+      date > /archive/.migrate.44.archive_started
+      /move_archive_assets.sh
+      date > /archive/.migrate.44.archive_complete
+    else
+      date > /archive/.migrate.44.no_archive
+    fi
+  fi
+
+  python -m migrate
+
+  add_me /archive/.migrate.44.migrate_complete
+
+else
+  echo 'No /archive attached'
+  exit 1
+fi

@@ -47,7 +47,7 @@ class GracefulKiller:
 def main():
     limit = os.getenv('LIMIT', 50)
     conn = psycopg2.connect(
-        **parse_dsn(os.getenv('DATABASE_URL', 'postgres://postgres@postgres:5432'))
+        **parse_dsn(os.getenv('DATABASE_URL') or 'postgres://postgres@postgres_db9:5432')
     )
     cur = conn.cursor()
     killer = GracefulKiller()
@@ -117,7 +117,7 @@ def main():
                             str(row[1]),
                             'chunks.txt'
                         )),
-                        data=row[4].encode('utf-8')
+                        data='\n<<<<< end_of_chunk >>>>>\n'.join(row[4]).encode('utf-8')
                     )
 
                 if not migrants:

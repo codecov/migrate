@@ -10,15 +10,7 @@ set -e
 # move into the archive volume
 cd /archive/
 
-# only run once
-if [ -d .minio.sys ];
-then
-   echo 'Archive migration already completed.'
-   exit 0;
-else
-  mkdir -p .minio.sys/buckets/archive/
-fi
-
+mkdir -p .minio.sys/buckets/archive/
 
 echo 'Before'
 du -hcs v4/

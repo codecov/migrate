@@ -1,0 +1,51 @@
+#!/bin/bash
+
+set -x
+set -e
+
+echo '===> Stopping compose stack'
+docker-compose down
+
+echo '===> Creating migration stack'
+mv docker-compose.yml docker-compose.yml.backup
+curl -s https://raw.githubusercontent.com/codecov/migrate/master/docker-compose.yml \
+  > docker-compose.yml
+
+echo '===> Starting migration stack'
+docker-compose up -d
+
+echo '===> Scaling migration'
+docker-compose scale migrate=10
+
+echo '===> Waiting on migration...'
+while true; do
+  if [ "$(curl http://localhost:5001)" == '0' ]; then
+    break
+  fi
+  sleep 5
+done
+
+echo '===> Waiting on database dump...'
+while true; do
+  if [ "$(curl http://localhost:5009)" == '0' ]; then
+    break
+  fi
+  sleep 5
+done
+
+echo '===> Waiting on database restore...'
+while true; do
+  if [ "$(curl http://localhost:5010)" == '0' ]; then
+    break
+  fi
+  sleep 5
+done
+
+echo '===> Stopping migration stack'
+docker-compose down
+
+echo '===> Loading new stack'
+curl -s https://... \
+  > docker-compose.yml
+
+docker-compose up -d

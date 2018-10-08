@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+mkdir -p /archive/v4/folder/abc123/
+echo 'hello' > /archive/v4/folder/abc123/chunks.txt

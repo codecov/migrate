@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+python3 -m server &
+
+./run &
+
+tail -f /dev/null

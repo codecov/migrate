@@ -1,1 +1,4 @@
 venv3
+.pytest_cache
+.git
+tests

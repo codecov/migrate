@@ -1,0 +1,61 @@
+#!/bin/bash
+
+set -e
+
+function cleanup(){
+  docker-compose down || echo 1
+  docker volume rm migrate_archive-volume || echo 1
+  docker volume rm migrate_postgres-volume || echo 1
+  docker volume rm migrate_postgres10-volume || echo 1
+}
+
+cleanup
+
+docker-compose up -d
+
+# wait for db to startup
+sleep 5
+
+# fill database
+docker-compose exec postgres9 ./test
+
+# fill archive
+docker-compose exec migrate /test
+
+# no assets error, so now we retry
+docker-compose restart migrate
+
+echo 'Waiting on migration...'
+while true; do
+  if [ "$(curl -s http://localhost:5001)" = '0' ]; then
+    break
+  fi
+  sleep 5
+done
+
+echo 'Waiting on database dump...'
+while true; do
+  if [ "$(curl -s http://localhost:5009)" = '0' ]; then
+    break
+  fi
+  sleep 5
+done
+
+echo 'Waiting on database restore...'
+while true; do
+  if [ "$(curl -s http://localhost:5010)" = '0' ]; then
+    break
+  fi
+  sleep 5
+done
+
+echo '---------------------------------------------------------------'
+echo '---------------------------------------------------------------'
+echo '---------------------------------------------------------------'
+echo '---------------------------------------------------------------'
+echo '---------------------------------------------------------------'
+
+set -x
+
+# run tests
+docker-compose exec migrate find /archive -type f
