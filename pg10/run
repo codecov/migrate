@@ -4,13 +4,15 @@ set -e
 
 DB='postgres://postgres@postgres_db10:5432'
 
-if [ -f /archive/.migrate.44.pg_restore_started ];
+if [ -f /archive/.migrate.44.pg_restore_complete ];
+then
+  echo 'Restore complete.'
+
+
+elif [ -f /archive/.migrate.44.pg_restore_started ];
 then
   echo 'Restore happening on another node.'
 
-elif [ -f /archive/.migrate.44.pg_restore_complete ];
-then
-  echo 'Restore complete.'
 
 elif [ -f /archive/pg_dump.gz.txt ];
 then
