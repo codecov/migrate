@@ -31,7 +31,7 @@ services:
       - archive-volume:/archive
 
   postgres:
-    image: postgres:9.6-alpine
+    image: postgres:9.3-alpine
     volumes:
       - postgres-volume:/var/lib/postgresql/data
 
