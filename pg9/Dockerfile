@@ -1,4 +1,4 @@
-FROM          postgres:9.6-alpine
+FROM          postgres:9.3-alpine
 
 COPY          pg9/ /
 COPY          server.py /
