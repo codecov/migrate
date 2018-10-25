@@ -30,7 +30,7 @@ services:
       - postgres10-volume:/var/lib/postgresql/data
       - archive-volume:/archive
 
-  postgres_db9:
+  postgres:
     image: postgres:9.6-alpine
     volumes:
       - postgres-volume:/var/lib/postgresql/data

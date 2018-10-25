@@ -47,7 +47,7 @@ class GracefulKiller:
 def main():
     limit = os.getenv('LIMIT', 50)
     conn = psycopg2.connect(
-        **parse_dsn(os.getenv('DATABASE_URL') or 'postgres://postgres@postgres_db9:5432')
+        **parse_dsn(os.getenv('DATABASE_URL') or 'postgres://postgres@postgres:5432')
     )
     cur = conn.cursor()
     killer = GracefulKiller()

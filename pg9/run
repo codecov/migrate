@@ -2,7 +2,7 @@
 
 set -e
 
-DB='postgres://postgres@postgres_db9:5432'
+DB='postgres://postgres@postgres:5432'
 
 if [ -f /archive/.migrate.44.pg_dump_complete ];
 then
@@ -11,7 +11,7 @@ then
 elif [ -f /archive/.migrate.44.pg_dump_started ];
 then
   echo 'Dump in progress by another node.'
-  
+
 else
   echo '===> Preparing old database for migration'
   psql ${DATABASE_URL:-$DB} -f /pre.sql
