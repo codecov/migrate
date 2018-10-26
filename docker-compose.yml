@@ -1,12 +1,31 @@
 version: "3"
 
 services:
+  traefik:
+    image: traefik:v1.7-alpine
+    command:
+      - --api
+      - --docker
+      - --docker.watch
+      - --docker.constraints=tag==web
+      - --entryPoints=Name:http Address::80 Compress::true
+      - --defaultEntryPoints=http
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - /dev/null:/traefik.toml:rw
+    ports:
+      - "5001:80"
+
   migrate:
     image: codecov/migrate
     ports:
-      - 5001:5000
+      - 5000
     environment:
       DATABASE_URL: ${DATABASE_OLD_URL}
+    labels:
+      - "traefik.tags=web"
+      - "traefik.backend=web"
+      - "traefik.port=5000"
     volumes:
       - archive-volume:/archive
 
