@@ -26,6 +26,7 @@ services:
       - "traefik.tags=web"
       - "traefik.backend=web"
       - "traefik.port=5000"
+      - "traefik.frontend.rule=PathPrefix: /"
     volumes:
       - archive-volume:/archive
 
