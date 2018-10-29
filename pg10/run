@@ -7,7 +7,7 @@ DB='postgres://postgres@postgres_db10:5432'
 if [ -f /archive/.migrate.44.pg_reindex_complete ];
 then
   echo 'Restore complete.'
-
+  exit 0
 
 elif [ -f /archive/.migrate.44.pg_restore_started ];
 then
