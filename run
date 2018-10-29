@@ -17,6 +17,8 @@ docker-compose up -d
 echo '===> Scaling migration'
 docker-compose scale migrate=10
 
+sleep 20  # wait for 20 seconds to let the stack startup
+
 echo '===> Waiting on migration...'
 while true; do
   if [ "$(curl http://localhost:5001)" == '0' ]; then

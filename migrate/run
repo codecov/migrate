@@ -10,12 +10,13 @@ function is_all_complete(){
     complete=$(wc -l /archive/.migrate.44.migrate_complete | xargs | cut -d' ' -f1)
     if [ working = complete ];
     then
-      echo 1
+      # if the same number of nodes are regestered working and complete
+      echo 'yes'
     else
-      echo 0
+      echo 'no'
     fi
   else
-    echo 0
+    echo 'no'
   fi
 }
 
@@ -32,9 +33,10 @@ function add_me(){
 }
 
 
-if [ is_all_complete = 1 ];
+if [ is_all_complete = 'yes' ];
 then
   echo 'Complete'
+  exit 0  # finished. Can move to next step
 
 elif [ -d /archive/ ];
 then

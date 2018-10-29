@@ -12,7 +12,7 @@ then
 elif [ -f /archive/.migrate.44.pg_restore_started ];
 then
   echo 'Restore happening on another node.'
-
+  exit 1
 
 elif [ -f /archive/pg_dump.gz.txt ] && [ -f /archive/.migrate.44.pg_dump_complete ];
 then
@@ -23,8 +23,8 @@ then
   date > /archive/.migrate.44.pg_restore_started
 
   # restore data
-  pg_restore ${DATABASE_URL:-$DB} \
-    --disable-triggers \
+  pg_restore --disable-triggers \
+    ${DATABASE_URL:-$DB} \
     /archive/pg_dump.gz.txt
 
   # update release #
@@ -58,4 +58,5 @@ then
 
 else
   echo 'No pg_dump file found to restore.'
+  exit 1
 fi

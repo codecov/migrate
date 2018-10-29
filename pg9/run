@@ -10,7 +10,8 @@ then
 
 elif [ -f /archive/.migrate.44.pg_dump_started ];
 then
-  echo 'Dump in progress by another node.'
+  echo 'Dump in progress'
+  exit 1
 
 else
   echo '===> Preparing old database for migration'
