@@ -51,7 +51,7 @@ then
     );"
 
   # reindex
-  psql ${DATABASE_URL:-$DB} -c "REINDEX branches;REINDEX commits;REINDEX owners;REINDEX pulls;REINDEX repos;REINDEX sessions;REINDEX yaml;"
+  psql ${DATABASE_URL:-$DB} -c "REINDEX branches;REINDEX commits;REINDEX owners;REINDEX pulls;REINDEX repos;REINDEX sessions;REINDEX yaml_history;"
   date > /archive/.migrate.44.pg_reindex_complete
 
   rm /archive/pg_dump.gz.txt
