@@ -12,6 +12,7 @@ curl -s https://raw.githubusercontent.com/codecov/migrate/master/docker-compose.
   > docker-compose.yml
 
 echo '===> Starting migration stack'
+docker-compose pull
 docker-compose up -d
 
 echo '===> Scaling migration'
