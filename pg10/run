@@ -14,7 +14,7 @@ then
   echo 'Restore happening on another node.'
 
 
-elif [ -f /archive/pg_dump.gz.txt ];
+elif [ -f /archive/pg_dump.gz.txt ] && [ -f /archive/.migrate.44.pg_dump_complete ];
 then
 
   echo '===> Preparing new database for migration'
