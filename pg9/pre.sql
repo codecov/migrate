@@ -10,6 +10,7 @@ alter table commits drop column if exists archived;
 alter table pulls   drop column if exists changes;
 alter table pulls   drop column if exists base_branch;
 alter table pulls   drop column if exists head_branch;
+alter table pulls   rename column totals to diff;
 
 drop table if exists migrated;
 drop table if exists migrate_range;
