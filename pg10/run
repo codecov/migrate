@@ -24,7 +24,7 @@ then
 
   # restore data
   pg_restore --disable-triggers \
-    ${DATABASE_URL:-$DB} \
+    -d "${DATABASE_URL:-$DB}" \
     /archive/pg_dump.gz.txt
 
   # update release #
