@@ -33,7 +33,7 @@ then
   # disable indexes
   psql ${DATABASE_URL:-$DB} -c "UPDATE pg_index
     SET indisready=false
-    WHERE indrelid = (
+    WHERE indrelid in (
         SELECT oid
         FROM pg_class
         WHERE relname in ('branches', 'commits', 'owners', 'pulls', 'repos', 'sessions', 'yaml')
@@ -44,7 +44,7 @@ then
   # enable indexes
   psql ${DATABASE_URL:-$DB} -c "UPDATE pg_index
     SET indisready=true
-    WHERE indrelid = (
+    WHERE indrelid in (
         SELECT oid
         FROM pg_class
         WHERE relname in ('branches', 'commits', 'owners', 'pulls', 'repos', 'sessions', 'yaml')
