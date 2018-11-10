@@ -15,6 +15,16 @@ services:
       - /dev/null:/traefik.toml:rw
     ports:
       - "5001:80"
+  backup:
+    image: codecov/migrate-backup
+    environment:
+      DATABASE_URL: ${DATABASE_OLD_URL}
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+      - archive-volume:/archive
+      - ./backups:/backups
+    ports:
+      - "5011:5000"
 
   migrate:
     image: codecov/migrate

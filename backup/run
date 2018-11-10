@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# zips the contents of /archive and moves it to a volume the user specifies.
+# TODO: document this. put it in its own docker-compose file.
+# build off of postgres so you coud pg_dump the database too if you wanted. 
+DB='postgres://postgres@postgres:5432'
+
+#zip archive and store to volume
+tar -zcvf /backups/archive.tar.gz /archive/
+
+pg_dump ${DATABASE_URL:-$DB} \
+    --data-only -Fc --no-acl -Z9 --no-owner \
+    > /backups/pg_dump.gz.txt
