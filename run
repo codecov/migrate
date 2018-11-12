@@ -20,9 +20,40 @@ docker-compose scale migrate=10
 
 sleep 20  # wait for 20 seconds to let the stack startup
 
+BACKUP=0
+
+while getopts ":b" opt; do
+  case $opt in
+    b)
+      BACKUP=1
+      echo "Running in backup mode..." >&2
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      ;;
+  esac
+done
+
+
+if [ $BACKUP == 1 ]; then
+  echo '===> Backing up Codecov 4.3.9. Depending on the size of your archive, this may take awhile...'
+  echo '===> You can run "docker-compose logs backup" from this directory to see migration progress.'
+
+  while true; do
+    if [ "$(curl http://localhost:5011)" == '0' ]; then
+      break
+    fi
+    sleep 5
+  done
+
+  echo ' ==> Your data has been backed up. Please ensure these backups are functional before continuing.'
+  echo ' ==> To finish the migration, run this script without the -b or --backup flag.'
+  exit 1
+fi
+
 echo '===> Waiting on migration...'
 while true; do
-  if [ "$(curl http://localhost:5001)" == '0' ]; then
+  if [ "$(curl http://localhost:5011)" == '0' ]; then
     break
   fi
   sleep 5
