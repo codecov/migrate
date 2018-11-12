@@ -6,7 +6,10 @@
 DB='postgres://postgres@postgres:5432'
 
 #zip archive and store to volume
-tar -zcvf /backups/archive.tar.gz /archive/
+#tar -zcvf /backups/archive.tar.gz /archive/
+
+tar cf - /archive -P | pv -s $(($(du -sk /archive | awk '{print $1}') * 1024)) | gzip > /backups/archive.tar.gz
+
 
 pg_dump ${DATABASE_URL:-$DB} \
     --data-only -Fc --no-acl -Z9 --no-owner \
