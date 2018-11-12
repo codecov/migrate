@@ -54,7 +54,7 @@ def main():
 
     try:
         cur.execute('CREATE TABLE migrate_range (id serial primary key, start int, stop int, working boolean default false, complete boolean default false);')
-        cur.execute('INSERT INTO migrate_range (start, stop) select i, i+1000 from generate_series(1, (select max(repoid) from repos limit 1), 1000) as i;')
+        cur.execute('INSERT INTO migrate_range (start, stop) select i, i+5 from generate_series(1, (select max(repoid) from repos limit 1), 5) as i;')
         cur.execute('CREATE TABLE migrated (repoid int not null, commitid text not null);')
         cur.execute('CREATE INDEX migrated_keys on migrated (repoid, commitid);')
     except psycopg2.ProgrammingError:
