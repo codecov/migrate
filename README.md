@@ -1,3 +1,22 @@
+# Codecov v4.3.9 => 4.4.0 Migration Guide
+
+This guide is meant to assist with migrating a Codecov Enterprise v4.3.9 install to v4.4.0. It is specifically tailored to users who are utilizing the standard Dockerized deployment. However the code is open source and descriptions will be provided such that enterprise users taking advantage of non-standard setups can understand how to migrate themselves. 
+
+Additionally, codecov is here to help! If you'd like to discuss migrating beforehand, or need help with the process, please reach out to us at: support@codecov.io with the Subject Line "Enterprise Migration Assistance Needed".
+
+## Who is this for?
+
+This guide is comprised of two major components
+
+1. scripts to provide a highly automated upgrade path for those that utilize a standard Dockerized install of Codecov Enterprise.
+2. Source code and text to support those users who wish to upgrade and don't have a standard Dockerized install of Codecov Enterprise
+
+If you feel like you fit into some other category but still wish to upgrade, please contact us!
+
+## How do I know if my install is "standard"?
+
+
+
 ### Codecov Migration 4.3.10 => 4.4.0
 
 ```
