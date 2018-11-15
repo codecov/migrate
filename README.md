@@ -72,7 +72,7 @@ After review, if you have any questions, please contact us at support@codecov.io
 
 ## Caveats
 
-1. The run script assumes that certain ports will be available on localhost: 5001. 5009, and 5010.
+1. The run script assumes that certain ports will be available on localhost: 5001. 5009, 5010, and 5011.
 
 ## Additional Notes
 
