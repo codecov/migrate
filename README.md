@@ -96,7 +96,7 @@ Backs up the report archive and database to a `/backups` folder.
 
 - runs the pg10 restore to restore the pg9 data to a new pg10 databse.
 
-### 4.4.0 Major Changelog
+## 4.4.0 Major Changelog
 
 1. The flat file archive has been replaced by minio, which is more secure and provides compression by default. This results in less space consumed on disk for Codecov's report archive. The access credentials for minio can be changed in the `docker-compose.yml` file (see `MINIO_ACCESS_KEY` and `MINIO_ACCESS_SECRET` variables).
 2. The database has been upgraded from postgres 9.6 to postgres 10. 
