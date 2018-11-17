@@ -102,7 +102,7 @@ Backs up the report archive and database to a `/backups` folder.
 
 ### 4.4.0 Major Changelog
 
-1. The flat file archive has been replaced by minio, which is more secure and provides compression by default. This results in less space consumed on disk for Codecov's report archive. The access credentials for minio can be changed in the `docker-compose.yml` file (see `MINIO_ACCESS_KEY` and `MINIO_ACCESS_SECRET` variables.
+1. The flat file archive has been replaced by minio, which is more secure and provides compression by default. This results in less space consumed on disk for Codecov's report archive. The access credentials for minio can be changed in the `docker-compose.yml` file (see `MINIO_ACCESS_KEY` and `MINIO_ACCESS_SECRET` variables).
 2. The database has been upgraded from postgres 9.6 to postgres 10. 
 3. The codebase is now more closely in alignment with Codecov's hosted offering (https://codecov.io), and as such can now experience faster and more frequent upgrade cycles.
 4. nginx has been replaced by traefik, which allows for cleaner autodiscovery of services. This should provide a simpler route to service scaling if required. 
