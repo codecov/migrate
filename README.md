@@ -1,6 +1,8 @@
 # Codecov v4.3.9 => 4.4.0 Migration Guide
 
-This guide is meant to assist with migrating a Codecov Enterprise v4.3.9 install to v4.4.0. It is specifically tailored to users who are utilizing the standard Dockerized deployment. However the code is open source and descriptions will be provided such that enterprise users taking advantage of non-standard setups can understand how to migrate themselves. 
+This guide is meant to assist with migrating a Codecov Enterprise v4.3.9 install to v4.4.0. It is specifically tailored to users who are utilizing the standard Dockerized deployment. However the code is open source and descriptions will be provided such that enterprise users taking advantage of non-standard setups can understand how to migrate themselves.
+
+The full migration process is open source and stored within this repository. If you'd like to dig deeper to understand exactly what the migration is doing, you can review this repository in full. 
 
 Additionally, codecov is here to help! If you'd like to discuss migrating beforehand, or need help with the process, please reach out to us at: support@codecov.io with the Subject Line "Enterprise Migration Assistance Needed".
 
@@ -63,12 +65,6 @@ The migration itself is completely dockerized, you don't even need to clone this
 3. Terminate without running the migration. You'll need to run `./migrate` separately to run the full migration after backing up. 
 
 *NOTE: Depending on the size of your `/archive` directory and the number of reports it contains, backup will take awhile. On average the resulting compressed archive will be ~ 25% the size of the archive folder itself. So make sure you have enough space to store this backup*
-
-## What if I want to know more?
-
-The full migration process is open source and stored within this repository. If you'd like to dig deeper to understand exactly what the migration is doing, you can review this repository in full. 
-
-After review, if you have any questions, please contact us at support@codecov.io
 
 ## Caveats
 
