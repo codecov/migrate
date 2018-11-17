@@ -72,11 +72,11 @@ After review, if you have any questions, please contact us at support@codecov.io
 
 ## Caveats
 
-The run script assumes that certain ports will be available on localhost: 5001. 5009, 5010, and 5011.
+The run script assumes that certain ports will be available on localhost: 5001, 5009, 5010, and 5011.
 
 ## Additional notes
 
-### Containers
+### Migration Containers
 
 The migration performs tasks by spinning up a few Docker containers and kicking off their operations using curl. You can review how this works in the `run` script in this repository. The general purpose of each container is described below:
 
@@ -99,3 +99,11 @@ Backs up the report archive and database to a `/backups` folder.
 #### pg10
 
 - runs the pg10 restore to restore the pg9 data to a new pg10 databse.
+
+### 4.4.0 Major Changelog
+
+1. The flat file archive has been replaced by minio, which is more secure and provides compression by default. This results in less space consumed on disk for Codecov's report archive. The access credentials for minio can be changed in the `docker-compose.yml` file (see `MINIO_ACCESS_KEY` and `MINIO_ACCESS_SECRET` variables.
+2. The database has been upgraded from postgres 9.6 to postgres 10. 
+3. The codebase is now more closely in alignment with Codecov's hosted offering (https://codecov.io), and as such can now experience faster and more frequent upgrade cycles.
+4. nginx has been replaced by traefik, which allows for cleaner autodiscovery of services. This should provide a simpler route to service scaling if required. 
+5. Grafana, prometheus, and statsd have been added as optional services. 
