@@ -9,23 +9,23 @@ Additionally, codecov is here to help! If you'd like to discuss migrating before
 This repository is comprised of two major components
 
 1. Scripts to provide a highly automated upgrade path for those that utilize a standard Dockerized install of Codecov Enterprise.
-2. Source code and text to support those users who wish to upgrade and don't have a standard Dockerized install of Codecov Enterprise
+2. Source code and text to support those users who wish to upgrade and don't have a standard Dockerized install of Codecov Enterprise (e.g., Kubernetes)
 
 If you feel like you fit into some other category but still wish to upgrade, please contact us!
 
 ### How do I know if my install is "standard"?
 
-If you've followed the [Docker install instructions](https://docs.codecov.io/docs/deploying-with-docker) in Codecov's documentation, then odds are your install is standard. Put more specifically:
+If the original implementer of Codecov at your company used [Docker install instructions](https://docs.codecov.io/docs/deploying-with-docker) in Codecov's documentation, it's likely your install is standard. Put more specifically:
 
 1. `docker-compose up` starts codecov enterprise
 2. Your docker-compose.yml file is unmodified
-3. You have made no significant changes to the nginx configuration of Codecov Enterprise. 
+3. No significant changes have been made to the nginx configuration of Codecov Enterprise. 
 
 If you need to compare your install to Codecov Enterprise's default, you can always compare the [docker-compose.yml](https://raw.githubusercontent.com/codecov/enterprise/master/compose-assets/docker-compose.yml) and [nginx.config](https://raw.githubusercontent.com/codecov/enterprise/master/compose-assets/nginx.config) files to look for any major changes.
 
 If your setup varies from the standard Docker install, please contact us at support@codecov.io to discuss other potential upgrade paths. 
 
-## My Install uses Docker and is Standard, what Next?
+## My Install uses Docker and is standard, what next?
 
 First, **backup everything**. The migration scripts have a helper method to assist with backups, but if you already have your own process in place to generate database and file archive backups, make sure those backups are up to date and can be used to recover if necessary. 
 
@@ -64,7 +64,7 @@ The migration itself is completely dockerized, you don't even need to clone this
 
 *NOTE: Depending on the size of your `/archive` directory and the number of reports it contains, backup will take awhile. On average the resulting compressed archive will be ~ 25% the size of the archive folder itself. So make sure you have enough space to store this backup*
 
-## What if I want to know More?
+## What if I want to know more?
 
 The full migration process is open source and stored within this repository. If you'd like to dig deeper to understand exactly what the migration is doing, you can review this repository in full. 
 
@@ -72,9 +72,9 @@ After review, if you have any questions, please contact us at support@codecov.io
 
 ## Caveats
 
-1. The run script assumes that certain ports will be available on localhost: 5001. 5009, 5010, and 5011.
+The run script assumes that certain ports will be available on localhost: 5001. 5009, 5010, and 5011.
 
-## Additional Notes
+## Additional notes
 
 ### Containers
 
