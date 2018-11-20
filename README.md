@@ -102,4 +102,3 @@ Backs up the report archive and database to a `/backups` folder.
 2. The database has been upgraded from postgres 9.6 to postgres 10. 
 3. The codebase is now more closely in alignment with Codecov's hosted offering (https://codecov.io), and as such can now experience faster and more frequent upgrade cycles.
 4. nginx has been replaced by traefik, which allows for cleaner autodiscovery of services. This should provide a simpler route to service scaling if required. 
-5. Grafana, prometheus, and statsd have been added as optional services. 
