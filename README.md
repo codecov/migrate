@@ -68,7 +68,8 @@ The migration itself is completely dockerized, you don't even need to clone this
 
 ## Caveats
 
-The run script assumes that certain ports will be available on localhost: 5001, 5009, 5010, and 5011.
+1. The run script assumes that certain ports will be available on localhost: 5001, 5009, 5010, and 5011.
+2. If you're upgrading from a trial of 4.3.9 to a trial of 4.4.0 for evaluation purposes, you will need to [include your enterprise license key in the codecov.yml file](https://docs.codecov.io/docs/configuration#section-enterprise-license) of 4.4.0 for codecov to function properly. If you don't have an enterprise license key for your trial, contact support@codecov.io
 
 ## Additional notes
 
