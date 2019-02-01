@@ -1,6 +1,6 @@
-# Codecov v4.3.9 => 4.4.0 Migration Guide
+# Codecov v4.3.9 => 4.4.x Migration Guide
 
-This guide is meant to assist with migrating a Codecov Enterprise v4.3.9 install to v4.4.0. It is specifically tailored to users who are utilizing the standard Dockerized deployment. However the code is open source and descriptions will be provided such that enterprise users taking advantage of non-standard setups can understand how to migrate themselves.
+This guide is meant to assist with migrating a Codecov Enterprise v4.3.9 install to v4.4.x. It is specifically tailored to users who are utilizing the standard Dockerized deployment. However the code is open source and descriptions will be provided such that enterprise users taking advantage of non-standard setups can understand how to migrate themselves.
 
 The full migration process is open source and stored within this repository. If you'd like to dig deeper to understand exactly what the migration is doing, you can review this repository in full. 
 
@@ -97,9 +97,11 @@ Backs up the report archive and database to a `/backups` folder.
 
 - runs the pg10 restore to restore the pg9 data to a new pg10 databse.
 
-## 4.4.0 Major Changelog
+## 4.4.x Major Changelog
 
 1. The flat file archive has been replaced by minio, which is more secure and provides compression by default. This results in less space consumed on disk for Codecov's report archive. The access credentials for minio can be changed in the `docker-compose.yml` file (see `MINIO_ACCESS_KEY` and `MINIO_ACCESS_SECRET` variables).
 2. The database has been upgraded from postgres 9.6 to postgres 10. 
 3. The codebase is now more closely in alignment with Codecov's hosted offering (https://codecov.io), and as such can now experience faster and more frequent upgrade cycles.
 4. nginx has been replaced by traefik, which allows for cleaner autodiscovery of services. This should provide a simpler route to service scaling if required. 
+
+Addtional recent canges: https://blog.codecov.io/2019/01/24/new-in-codecov-4-4-3/
