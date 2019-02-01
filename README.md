@@ -1,3 +1,5 @@
+_Note: As of 2019-24-01 "4.4.x" most recent version is 4.4.3_
+
 # Codecov v4.3.9 => 4.4.x Migration Guide
 
 This guide is meant to assist with migrating a Codecov Enterprise v4.3.9 install to v4.4.x. It is specifically tailored to users who are utilizing the standard Dockerized deployment. However the code is open source and descriptions will be provided such that enterprise users taking advantage of non-standard setups can understand how to migrate themselves.
@@ -39,7 +41,7 @@ You should backup the following:
 
 If you don't have backups, you can run this migration script with the `-b` flag (see Running the Migration below). This will generate a compressed backup of your report archives and a data-only dump of your database that can be used to restore a fresh v4.3.9 install in the event of a total failure.
 
-A successful migration will bring your install to Codecov Enterprise v.4.4.0 with all data intact, but proper backups will ensure there is always a way to recover from the worst of catastrophes.
+A successful migration will bring your install to Codecov Enterprise v.4.4.x with all data intact, but proper backups will ensure there is always a way to recover from the worst of catastrophes.
 
 ## Running the migration
 
@@ -55,8 +57,8 @@ The migration itself is completely dockerized, you don't even need to clone this
 1. Take down your running infrastructure
 2. Migrate the datatabase to postgres 10, while dropping some no longer needed columns
 3. Convert the flat file report archive to a compressed archive backed by minio
-4. Pull down a new docker-compose for v.4.4.0
-5. Spin up and start Codecov Enterprise v4.4.0 
+4. Pull down a new docker-compose for v.4.4.x
+5. Spin up and start Codecov Enterprise v4.4.x 
 
 `./migrate -b` if chosen, will:
 
@@ -69,7 +71,7 @@ The migration itself is completely dockerized, you don't even need to clone this
 ## Caveats
 
 1. The run script assumes that certain ports will be available on localhost: 5001, 5009, 5010, and 5011.
-2. If you're upgrading from a trial of 4.3.9 to a trial of 4.4.0 for evaluation purposes, you will need to [include your enterprise license key in the codecov.yml file](https://docs.codecov.io/docs/configuration#section-enterprise-license) of 4.4.0 for codecov to function properly. If you don't have an enterprise license key for your trial, contact support@codecov.io
+2. If you're upgrading from a trial of 4.3.9 to a trial of 4.4.x for evaluation purposes, you will need to [include your enterprise license key in the codecov.yml file](https://docs.codecov.io/docs/configuration#section-enterprise-license) of 4.4.x for codecov to function properly. If you don't have an enterprise license key for your trial, contact support@codecov.io
 
 ## Additional notes
 
