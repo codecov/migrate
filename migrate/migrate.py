@@ -19,7 +19,8 @@ def e(string):
 
 def get_archive_hash(row: list) -> str:
     _hash = md5()
-    _hash.update(e(f'{row[0]}{row[2]}{row[3]}codecov-default-hashkey'))
+    _hash.update(
+        e(f'{row[0]}{row[2]}{row[3]}1bc45u9e1wd947f2a0681b215404873e'))
     return b16encode(_hash.digest())
 
 
