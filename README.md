@@ -104,4 +104,4 @@ Backs up the report archive and database to a `/backups` folder.
 3. The codebase is now more closely in alignment with Codecov's hosted offering (https://codecov.io), and as such can now experience faster and more frequent upgrade cycles.
 4. nginx has been replaced by traefik, which allows for cleaner autodiscovery of services. This should provide a simpler route to service scaling if required. 
 
-Addtional recent changes for v4.4.3: https://blog.codecov.io/2019/01/24/new-in-codecov-4-4-3/
+Please reach out for more recent change logs up to current version of 4.4.x.
