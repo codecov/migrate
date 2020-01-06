@@ -1,6 +1,6 @@
-# Codecov v4.3.9 => 4.4.0 Migration Guide
+# Codecov v4.3.9 => 4.4.* Migration Guide
 
-This guide is meant to assist with migrating a Codecov Enterprise v4.3.9 install to v4.4.0. It is specifically tailored to users who are utilizing the standard Dockerized deployment. However the code is open source and descriptions will be provided such that enterprise users taking advantage of non-standard setups can understand how to migrate themselves.
+This guide is meant to assist with migrating a Codecov Enterprise v4.3.9 install to v4.4.*. It is specifically tailored to users who are utilizing the standard Dockerized deployment. However the code is open source and descriptions will be provided such that enterprise users taking advantage of non-standard setups can understand how to migrate themselves.
 
 The full migration process is open source and stored within this repository. If you'd like to dig deeper to understand exactly what the migration is doing, you can review this repository in full. 
 
@@ -55,8 +55,7 @@ The migration itself is completely dockerized, you don't even need to clone this
 1. Take down your running infrastructure
 2. Migrate the datatabase to postgres 10, while dropping some no longer needed columns
 3. Convert the flat file report archive to a compressed archive backed by minio
-4. Pull down a new docker-compose for v.4.4.0
-5. Spin up and start Codecov Enterprise v4.4.0 
+4. Pull down a new docker-compose for v.4.4.*. 
 
 `./migrate -b` if chosen, will:
 
