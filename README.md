@@ -41,7 +41,7 @@ If you don't have backups, you can run this migration script with the `-b` flag 
 
 A successful migration will bring your install to Codecov Enterprise v.4.4.x with all data intact, but proper backups will ensure there is always a way to recover from the worst of catastrophes.
 
-Å
+## Running the migration
 
 The migration itself is completely dockerized, you don't even need to clone this repository to run it. Simply curl the migration script into your codecov enterprise install directory, give it +x permissions, and run it from the command line. 
 
