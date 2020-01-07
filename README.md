@@ -41,7 +41,7 @@ If you don't have backups, you can run this migration script with the `-b` flag 
 
 A successful migration will bring your install to Codecov Enterprise v.4.4.x with all data intact, but proper backups will ensure there is always a way to recover from the worst of catastrophes.
 
-## Running the migration
+Å
 
 The migration itself is completely dockerized, you don't even need to clone this repository to run it. Simply curl the migration script into your codecov enterprise install directory, give it +x permissions, and run it from the command line. 
 
@@ -64,6 +64,12 @@ The migration itself is completely dockerized, you don't even need to clone this
 3. Terminate without running the migration. You'll need to run `./migrate` separately to run the full migration after backing up. 
 
 *NOTE: Depending on the size of your `/archive` directory and the number of reports it contains, backup will take awhile. On average the resulting compressed archive will be ~ 25% the size of the archive folder itself. So make sure you have enough space to store this backup*
+
+## After the migration
+
+1. Consult the [following guide](https://docs.codecov.io/changelog/release-notes-for-codecov-v448#section-codecov-enterprise-self-hosted-448-changes-changes-to-minio) and update `codecov.yml` accordingly.
+2. Start up Codecov Enterprise 4.4.x in detached mode: `docker-compose up -d`
+3. Done!
 
 ## Caveats
 
