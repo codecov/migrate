@@ -81,5 +81,3 @@ docker-compose down
 echo '===> Loading new stack'
 curl -s https://raw.githubusercontent.com/codecov/enterprise/v4/compose-assets/docker-compose.yml \
   > docker-compose.yml
-
-docker-compose up -d
