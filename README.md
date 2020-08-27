@@ -1,4 +1,6 @@
 # Codecov v4.3.9 => 4.4.x Migration Guide
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcodecov%2Fmigrate.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fcodecov%2Fmigrate?ref=badge_shield)
+
 
 This guide is meant to assist with migrating a Codecov Enterprise v4.3.9 install to v4.4.x. It is specifically tailored to users who are utilizing the standard Dockerized deployment. However the code is open source and descriptions will be provided such that enterprise users taking advantage of non-standard setups can understand how to migrate themselves.
 
@@ -110,3 +112,7 @@ Backs up the report archive and database to a `/backups` folder.
 4. nginx has been replaced by traefik, which allows for cleaner autodiscovery of services. This should provide a simpler route to service scaling if required. 
 
 Please reach out for more recent change logs up to current version of 4.4.x.
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcodecov%2Fmigrate.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fcodecov%2Fmigrate?ref=badge_large)
