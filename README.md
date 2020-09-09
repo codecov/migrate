@@ -31,6 +31,7 @@ If your setup varies from the standard Docker install, please contact us at supp
 
 ## My Install uses Docker and is standard, what next?
 
+### Backup your Install
 First, **backup everything**. The migration scripts have a helper method to assist with backups, but if you already have your own process in place to generate database and file archive backups, make sure those backups are up to date and can be used to recover if necessary. 
 
 You should backup the following:
@@ -42,6 +43,31 @@ You should backup the following:
 If you don't have backups, you can run this migration script with the `-b` flag (see Running the Migration below). This will generate a compressed backup of your report archives and a data-only dump of your database that can be used to restore a fresh v4.3.9 install in the event of a total failure.
 
 A successful migration will bring your install to Codecov Enterprise v.4.4.x with all data intact, but proper backups will ensure there is always a way to recover from the worst of catastrophes.
+
+### Collect a raw report backlog
+Due to differences between how codecov 4.3.9 and 4.4.x display line by line coverage information, raw uploaded reports are needed to properly preserve and generate commit-level line by line coverage data within the Codecov UI. Without raw reports your 4.4.x installation will:
+
+* Display trends in total project coverage
+* Show total, relative, and change level coverage information for any commit
+
+Your 4.4.x installation will not:
+
+* Display line level coverage information for any given commit where coverage was uploaded in 4.3.9
+* Properly display pull request/compare pages for any comparison where the HEAD and/or base had coverage uploaded on the 4.3.9 install. 
+
+In order to provide a more seamless transition for your teams from 4.3.9 to 4.4.x it is recommended to spend some amount of time pre-migration archiving reports in your 4.3.9 install. You can do this by updating your 4.3.9 install's codecov yml as follows:
+
+```yaml
+setup:
+   archive:
+      expire_raw_after_n_days: 30
+```
+
+You can use a longer period than 30 days if you'd like. 
+
+This will properly store raw reports in 4.3.9 when they are uploaded, leaving them available for migration when you upgrade the installation to 4.4.x. It is generally recommended to wait at least two weeks after making this change to perform the migration. You can however, wait more or less time, depending how long of a report backlog you would like to migrate. 
+
+After the migration is complete, you will want to remove this setting from your 4.4.x Codecov Enterprise yaml.
 
 ## Running the migration
 
